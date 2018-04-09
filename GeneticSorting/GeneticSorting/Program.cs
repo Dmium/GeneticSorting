@@ -27,6 +27,8 @@ namespace GeneticSorting
             {
                 return mutations;
             }
+            //Kill underperforming algorithms.
+            //TODO- after x iterations kill algorithms that are out performed by a bogo sort
             SortedList<int, Algorithm> survivors = new SortedList<int, Algorithm>();
             for (int i = mutations.Count - 1; i > mutations.Count - algorithms.Count; i--)
             {
