@@ -13,6 +13,7 @@ namespace GeneticSorting
         static SortedList<int, Algorithm> Train(List<Algorithm> algorithms)
         {
             List<int> trainingData = GenerateTrainingData();
+            //Somewhat self-defeatingly using a sorting algorithm to create sorting algorithms
             SortedList<int, Algorithm> mutations = new SortedList<int, Algorithm>();
             foreach (Algorithm a in algorithms)
             {
