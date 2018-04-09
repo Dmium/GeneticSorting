@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace GeneticSorting
 {
@@ -6,7 +7,36 @@ namespace GeneticSorting
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            throw new NotImplementedException();
+        }
+
+        static SortedList<int, Algorithm> Train(List<Algorithm> algorithms)
+        {
+            List<int> trainingData = GenerateTrainingData();
+            SortedList<int, Algorithm> mutations = new SortedList<int, Algorithm>();
+            foreach (Algorithm a in algorithms)
+            {
+                for (int i = 0; i < 5; i++)
+                {
+                    Algorithm mutation = a.mutate();
+                    mutations.Add(mutation.Run(trainingData), mutation);
+                }
+            }
+            if (mutations.Count < algorithms.Count)
+            {
+                return mutations;
+            }
+            SortedList<int, Algorithm> survivors = new SortedList<int, Algorithm>();
+            for (int i = mutations.Count - 1; i > mutations.Count - algorithms.Count; i--)
+            {
+                survivors.Add(mutations.Keys[i], mutations.Values[i]);
+            }
+            return survivors;
+        }
+
+        static List<int> GenerateTrainingData()
+        {
+            throw new NotImplementedException();
         }
     }
 }
